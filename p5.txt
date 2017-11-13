@@ -252,9 +252,9 @@ Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.ne
         0.03s más o menos
 
  ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
-        Valor Máx delta: 45,6 ms
-        Valor Med jitter: 9,2 ms
-        Valor Max jitter: 8,5 ms
+        Valor Máx delta: 32,973 ms
+        Valor Med jitter: 1.972 ms
+        Valor Max jitter: 0.04 ms
 
 
  ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
