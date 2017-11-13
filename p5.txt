@@ -210,7 +210,6 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
         Se diferencia en el campo Expires, en este caso está a 0 y en la anterior a 3600.
 
 
-
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 ================================================================================
