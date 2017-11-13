@@ -221,16 +221,30 @@ Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.ne
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
  ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
+        DNS sí sería necesario usarlo, ya que hay que es la única forma de contactar con el servidor registrar. En el caso de STUN no haría falta, ya que sólo se usa si se está detrás de un router NAT.
+
  ** ¿Son diferentes el registro y la descripción de la sesión?
+        El registro utilizará SIP, mientras que la descripción de la sesión estará en SDP.
 
 
 18. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
  ** ¿Cuántos flujos tenemos?
- ** ¿Cuál es su periodicidad?
- ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
- ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
- ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+        Tenemos 4 flujos, dos por cada canal de la conversación, uno de video y otro de audio.
 
+ ** ¿Cuál es su periodicidad?
+        0.03s más o menos
+
+ ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
+        Valor Máx delta: 45,6 ms
+        Valor Med jitter: 9,2 ms
+        Valor Max jitter: 8,5 ms
+
+
+ ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
+        En la pestaña Telephony se escoge VoIP Calls, Play Streams.
+
+ ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+        No funciona.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
