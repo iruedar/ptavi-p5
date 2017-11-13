@@ -169,7 +169,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
         Hasta el paquete 246 que tiene el valor de 5.7ms y el 247 de 38.82ms.
 
  ** ¿A qué se debe el cambio tan brusco del jitter?
-        Porque la delta crece mucho debido a la reducción del ancho de banda, de 24.03ms en el 246 a 554.74ms en el 247, por lo tanto el jitter aumenta.
+        Porque la delta crece mucho, de 24.03ms en el 246 a 554.74ms en el 247, por lo tanto el jitter aumenta.
 
  ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
         El cambio en el jitter depende del cambio en el delta, el incremento del jitter será mayor que el del delta.
@@ -180,19 +180,34 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
  ** ¿Cuánto dura la conversación?
+        21 segundos
+
  ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
+        SSRC H.261: 0x43306582.
+        SSRC RTP: 0xbf4afdr7.
+        Hay un SSRC para cada flujo.
+        No hay CSRCs.
 
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza?
+        Utiliza el método BYE.
+
  ** ¿En qué trama(s)?
+        En los paquetes 924, 925, 927 y 933.
+
  ** ¿Por qué crees que se envía varias veces?
+        Porque se envía hasta recibir un mensaje 200 OK.
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
  ** ¿Por qué aparece una instrucción SIP del tipo REGISTER?
+        Para confirmar que se ha cerrado la sesión.
+
  ** ¿En qué trama sucede esto?
+        En el paquete 950.
  ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
+        Se diferencia en el campo Expires, en este caso está a 0 y en la anterior a 3600.
 
 
 
