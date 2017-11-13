@@ -143,18 +143,39 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
  ** ¿Cuántos flujos hay? ¿por qué?
+        Tenemos 2 flujos. Una para RTP propiamente y otro para H.261.
+
  ** ¿Cuántos paquetes se pierden?
+        No se pierde ningun paquete.
+
  ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
+        1290.479 ms en H.261 y 1290.444 ms en RTP. El tiempo entre un paquete y otro.
+
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
+        RTP --> 119.64 ms de jitter máximo y 42.50 ms de jitter medio.
+        H.261 --> 183.1 ms de jitter máximo y 153.24 ms de jitter medio.
+        El jitter refleja la latencia máxima y la latencia de media de la comunicación.
+        Sí, ya que no se supera un retardo superior a 300ms.
 
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
  ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
+        0 ms porque no hay ningún paquete con el que calcularlo en relación.
+
  ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
+        Sí, si el valor de la delta es 0.
+
  ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
+        Hasta el paquete 246 que tiene el valor de 5.7ms y el 247 de 38.82ms.
+
  ** ¿A qué se debe el cambio tan brusco del jitter?
+        Porque la delta crece mucho debido a la reducción del ancho de banda, de 24.03ms en el 246 a 554.74ms en el 247, por lo tanto el jitter aumenta.
+
  ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
+        El cambio en el jitter depende del cambio en el delta, el incremento del jitter será mayor que el del delta.
+
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
+        Conforme aumenta el valor de la delta, aumenta el jitter
 
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
