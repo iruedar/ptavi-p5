@@ -75,7 +75,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 8. La trama 46 es la primera trama SIP. En un entorno como el de Internet, lo habitual es desconocer la dirección IP de la otra parte al realizar una llamada. Por eso, todo usuario registra su localización en un servidor Registrar. El Registrar guarda información sobre los usuarios en un servidor de localización que puede ser utilizado para localizar usuarios.
  ** ¿Qué dirección IP tiene el servidor Registrar?
-        La dirección IP registrar es, Sent-by Address: 83.36.48.212.
+        86.64.162.35
 
  ** ¿A qué puerto (del servidor Registrar) se envían los paquetes SIP?
         Sent-by port: 5063
@@ -106,18 +106,37 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar con el servicio de eco de Ekiga que nos permite comprobar si nos hemos conectado correctamente. El servicio de eco tiene la dirección sip:500@ekiga.net. Veamos el INVITE de cerca.
  ** ¿Puede verse el nombre del que efectúa la llamada, así como su dirección SIP?
+        Si, esta información la vemos en el campo From.
+
  ** ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está?
+        Contiene información sobre la sesión SIP. El protocolo es SDP.
+
  ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes?
+        No. En el siguiente mensaje el servidor envia: 407 proxy auhentication required.
+
  ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto?
+        El Length del segundo INVITE es mayor que el el primero, ya que incluye el Proxy-Authorization. Debido al mensaje 407 del servidor.
 
 
 11. Una vez conectado, estudia el intercambio de tramas.
  ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
- ** ¿Cuál es el tamaño de paquete de los mismos?
- ** ¿Se utilizan bits de padding?
- ** ¿Cuál es la periodicidad de los paquetes que se envían?
- ** ¿Cuántos bits/segundo estamos enviando?
+        RTP y RTP con H.261. 
+        RTP es un protocolo para intercambio de datos a tiempo real.
+        H.261 es un estándar de compresión de video que lleva RTP por debajo.
 
+ ** ¿Cuál es el tamaño de paquete de los mismos?
+        Los paquetes de RTP tienen 214 bytes
+        Los paquetes de H.261 tienen un tamaño variable, se envían de dos en dos, las dos primeras parejas tienen más de 1000 bytes cada una, para el resto de paquetes el primero tendrá siempre más de 1000 bytes y el segundo oscilará entre los 200 y los 800 bytes.
+
+ ** ¿Se utilizan bits de padding?
+        El bit de padding está a 0 en los paquetes.
+
+ ** ¿Cuál es la periodicidad de los paquetes que se envían?
+        Aproximadamente un paquete RTP cada 0,024s.
+        Aproximadamente un paquete H.261 cada 0,25.
+
+ ** ¿Cuántos bits/segundo estamos enviando?
+        Si omitimos los paquetes H.261, hemos enviando 214 bytes cada 0,024s por lo tanto 71.3 kbits/s.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
